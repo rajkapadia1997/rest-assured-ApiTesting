@@ -2,14 +2,10 @@ import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-import org.relaxng.datatype.Datatype;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
-import io.restassured.response.Response;
 
 public class AIPResponse {
 	
@@ -89,5 +85,31 @@ public class AIPResponse {
 		
 	}
 	
+	@Test
+	public void Test_6_Deserialize() {
+		
+		
+		Gson gson = new Gson();
+
+		Aplication resObject = gson.fromJson(get("https://reqres.in/api/users/2").asString(), Aplication.class);
+
+		System.out.println(resObject.data.getEmail());
+		  
+		  
+		
+	}
 	
+	@Test
+	public void Test_7_Deserialize() {
+		
+		
+		Gson gson = new Gson();
+
+		UserList resObject = gson.fromJson(get("https://reqres.in/api/users?page=2").asString(), UserList.class);
+
+		System.out.println(resObject.ad.getUrl());
+		  
+		  
+		
+	}
 }
